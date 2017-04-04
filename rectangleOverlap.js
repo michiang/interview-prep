@@ -26,8 +26,7 @@ const findRectangleOverlap = (rectangle1, rectangle2) => {
 
 //Helper function to compute x and y overlap
 
-function findRangeOverlap( point1, range1, point2, range2 )
-{
+const findRangeOverlap = (point1, range1, point2, range2) => {
 	var farStartPoint = Math.max( point1, point2 );
 	var nearEndPoint = Math.min( point1 + range1, point2 + range2 );
 	var overlap = nearEndPoint - farStartPoint;
@@ -38,3 +37,4 @@ function findRangeOverlap( point1, range1, point2, range2 )
 	else {
 		return [farStartPoint, overlap];
 	}
+}
