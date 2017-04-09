@@ -20,12 +20,13 @@ var words = [
 Write a function for finding the index of the "rotation point," which is where I started working from the beginning of the dictionary. This array is huge (there are lots of words I don't know) so we want to be efficient here.
 */
 
-//My first intuition is binary search, but there are some limitations if the array is only mostly sorted
+//My first intuition is O(logn) binary search, but there are some limitations if the array is only mostly sorted
 //My second intuition is to go through the entire array, grab the first character of each word, set the character to a var string, use the native sort method to figure out at which index the array is not sorted alphabetically
+//Linear worst case not including the comparison of the temp var string to the first character in each word
 
 //Correct solution: a modified and adaptive version of binary search
 //Look at the middle item of the array and compare it to the first word in the array. Go right if the middle item is greater than the first item. Go left if the middle item is smaller than the first item.
-
+//O(logn) time, O(1) space
 const findRotationPoint = (words) => {
     const firstWord = words[0];
     let floorIndex = 0;
