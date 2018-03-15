@@ -1,0 +1,43 @@
+// Given a bag of coins B and a total T, 
+//create a function that 
+//1) returns a set of coins P that pays T exactly or null if none exists, 
+//2) returns a set of coins P that pays T exactly or exceeds T by the smallest amount or null if none exists.
+
+//O: Array of integers adding up to T
+//I: Bag of coins P - an array, total T - an integer
+//C: O(n) , maybe even better
+//E: None 
+
+//[2, 4, 7, 11]
+//Total - 15
+
+//      2                    4    7    11
+//   /    \    \ 
+//  4      7    11
+// / \    / \  /  \
+//7   11 4  11 4   7
+
+//findChange([2, 4, 7, 11, 11, 7], 15, []);
+
+function findChange (remCoins, remTotal, result) {
+    if (remTotal === 0) {
+      return result;
+    }
+
+    if (remTotal < 0) {
+      return null;
+    }
+
+    for (let i=0; i < remCoins.length; i++) {
+      let localTotal = remTotal - remCoins[i];  
+      let localRemCoins  = remCoins.splice(I, 1); // remCoins without remCoins[i]
+      let localResult = result; //Take the current instance of result
+      localResult.push(remCoins[i]);
+
+      let returnedResult = findChange(localRemCoins, localTotal, localResult);
+      if (returnedResult !== null) {
+          return returnedResult; 
+      } 
+    }
+    return null;
+}
