@@ -22,25 +22,40 @@ Write a function that takes in a number and prints out all the possible consecut
   //If our total is equal to the integer input, then return that sequence
 
   //If there are no sequences, then console.log no sequences
-
 function sumOfConsecutivePositiveIntegers(input) {
+  //Total number of sequences to return
   let sequences = [];
+  //Iterate up to input integer
   for (let i = 1; i < input; i++) {
-      let sum = 0;
-      let sequence = [];
-      for (let j = i; j < input; j++) {
-        sum += j;
-        sequence.push(j);
-        console.log(j + " sum = " + sum)
-        if (sum > input) {
-          break;
-        } else if (sum === input) {
-          sequences.push(sequence);
-          break;
-        }
+    //Track current sequence
+    let currentSequence = [];
+    //Set sum to 0 since we're starting from 1
+    let sum = 0;
+    //Iterate up to input to figure out if current sequence is a valid sequence
+    for (let j = i; j < input; j++) {
+      //Add each integer to sum
+      sum += j;
+      //Push the integer to the current sequence
+      currentSequence.push(j);
+      //If sum is greater than input, then break
+      if (sum > input) {
+        break;
+        //If sum is equal to input, return current sequence
+      } else if (sum === input) {
+        sequences.push(currentSequence);
+        break;
       }
+      //Assume that if sum is less than input, we keep iterating for the current sequence
+      //We only push sequence if sum === input, so if it's under or over, we won't see that sequence in our result
+    }
   }
-  console.log(sequences);
+  if (sequences.length === 0) {
+    console.log('Error! No sequences!');
+  } else {
+    console.log(sequences);
+  }
 }
+
+find(9);
 
 sumOfConsecutivePositiveIntegers(6);
